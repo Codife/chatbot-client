@@ -25,52 +25,51 @@ function App() {
   let speech = new SpeechSynthesisUtterance();
   speech.lang = "en";
 
+  // useEffect(() => {
+  //   document.addEventListener("keydown", (e) => {
+  //     if (e.code === "ControlLeft" || e.code === "ControlRight") {
+  //       buttonsPressed.current.ctrl = true;
+  //     } else if (e.code === "Space") {
+  //       buttonsPressed.current.space = true;
+  //     }
+  //     if (buttonsPressed.current.ctrl && buttonsPressed.current.space) {
+  //       setListening(true);
+  //     }
+  //   });
+  //   document.addEventListener("keyup", (e) => {
+  //     if (e.code === "ControlLeft" || e.code === "ControlRight") {
+  //       buttonsPressed.current.ctrl = false;
+  //     } else if (e.code === "Space") {
+  //       buttonsPressed.current.space = false;
+  //     }
+  //     if (!buttonsPressed.current.ctrl || !buttonsPressed.current.space) {
+  //       setListening(false);
+  //     }
+  //   });
 
-  useEffect(() => {
-    document.addEventListener("keydown", (e) => {
-      if (e.code === "ControlLeft" || e.code === "ControlRight") {
-        buttonsPressed.current.ctrl = true;
-      } else if (e.code === "Space") {
-        buttonsPressed.current.space = true;
-      }
-      if (buttonsPressed.current.ctrl && buttonsPressed.current.space) {
-        setListening(true);
-      }
-    });
-    document.addEventListener("keyup", (e) => {
-      if (e.code === "ControlLeft" || e.code === "ControlRight") {
-        buttonsPressed.current.ctrl = false;
-      } else if (e.code === "Space") {
-        buttonsPressed.current.space = false;
-      }
-      if (!buttonsPressed.current.ctrl || !buttonsPressed.current.space) {
-        setListening(false);
-      }
-    });
-
-    return () => {
-      document.removeEventListener("keydown", (e) => {
-        if (e.code === "ControlLeft" || e.code === "ControlRight") {
-          buttonsPressed.current.ctrl = true;
-        } else if (e.code === "Space") {
-          buttonsPressed.current.space = true;
-        }
-        if (buttonsPressed.current.ctrl && buttonsPressed.current.space) {
-          setListening(true);
-        }
-      });
-      document.removeEventListener("keyup", (e) => {
-        if (e.code === "ControlLeft" || e.code === "ControlRight") {
-          buttonsPressed.current.ctrl = false;
-        } else if (e.code === "Space") {
-          buttonsPressed.current.space = false;
-        }
-        if (!buttonsPressed.current.ctrl || !buttonsPressed.current.space) {
-          setListening(false);
-        }
-      });
-    };
-  }, []);
+  //   return () => {
+  //     document.removeEventListener("keydown", (e) => {
+  //       if (e.code === "ControlLeft" || e.code === "ControlRight") {
+  //         buttonsPressed.current.ctrl = true;
+  //       } else if (e.code === "Space") {
+  //         buttonsPressed.current.space = true;
+  //       }
+  //       if (buttonsPressed.current.ctrl && buttonsPressed.current.space) {
+  //         setListening(true);
+  //       }
+  //     });
+  //     document.removeEventListener("keyup", (e) => {
+  //       if (e.code === "ControlLeft" || e.code === "ControlRight") {
+  //         buttonsPressed.current.ctrl = false;
+  //       } else if (e.code === "Space") {
+  //         buttonsPressed.current.space = false;
+  //       }
+  //       if (!buttonsPressed.current.ctrl || !buttonsPressed.current.space) {
+  //         setListening(false);
+  //       }
+  //     });
+  //   };
+  // }, []);
 
   useEffect(() => {
     if (!browserSupportsSpeechRecognition) {
@@ -112,7 +111,6 @@ function App() {
       const TQnAs = QnAs;
       speech.text = res.data.answer;
       window.speechSynthesis.speak(speech);
-      // TQnAs.unshift();
       setQnAs([{ name: "Exarta", message: res.data.answer }, ...QnAs]);
     } catch (error) {
       console.log("API ERROR", error);
@@ -152,12 +150,18 @@ function App() {
             {QnAs.map((m) => {
               if (m.name === "Exarta")
                 return (
-                  <div key={Math.random()} className="messages__item messages__item--visitor">
+                  <div
+                    key={Math.random()}
+                    className="messages__item messages__item--visitor"
+                  >
                     {m.message}
                   </div>
                 );
               return (
-                <div key={Math.random()} className="messages__item messages__item--operator">
+                <div
+                  key={Math.random()}
+                  className="messages__item messages__item--operator"
+                >
                   {m.message}
                 </div>
               );
@@ -172,19 +176,22 @@ function App() {
                 setMessage(e.target.value);
               }}
             />
-            {!listening ? (
-              <button
-                className="chatbox__send--footer send__button"
-                onClick={sendQuestionToBot}
-              >
-                Send
-              </button>
-            ) : (
-              <button id="speech" className="btn m-left type2">
-                <div className="pulse-ring"></div>
-                <BsMic className="micIcon" />
-              </button>
-            )}
+
+            <button
+              className="chatbox__send--footer send__button"
+              onClick={sendQuestionToBot}
+            >
+              Send
+            </button>
+
+            <button
+              id="speech"
+              className="btn m-left type2"
+              onClick={() => setListening(!listening)}
+            >
+              {listening && <div className="pulse-ring"></div>}
+              <BsMic className="micIcon" />
+            </button>
           </div>
         </div>
         <div className="chatbox__button" onClick={toggleChatbox}>
