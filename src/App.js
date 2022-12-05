@@ -100,7 +100,7 @@ function App() {
     resetTranscript();
     try {
       const res = await axios.post(
-        `http://192.168.18.109:8080/predict`,
+        `https://0e99-2407-aa80-116-41ec-4546-a2c8-e7f3-4fb0.ap.ngrok.io/predict`,
         JSON.stringify({ message: message }),
         {
           headers: {
