@@ -1,0 +1,28 @@
+.container {
+  width: 100%;
+  background-color: rgb(226, 225, 225);
+  overflow: hidden;
+  position: relative;
+  border-radius: 6px;
+  margin-top: 50px;
+  height: 100vh;
+}
+.container::before {
+  content: "";
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  bottom: 0px;
+  right: 0px;
+}
+.container::after {
+  content: "";
+  position: absolute;
+  width: 125px;
+  height: 115px;
+  left: 50%;
+  margin-left: -55px;
+  top: -50px;
+  border-radius: 50%;
+  background-color: white;
+}

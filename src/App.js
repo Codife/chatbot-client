@@ -7,6 +7,7 @@ import SpeechRecognition, {
 } from "react-speech-recognition";
 import { BsMic } from "react-icons/bs";
 import axios from "axios";
+import { ChatContainer, Topbar } from "./components";
 
 function App() {
   const [chatbox, setChatbox] = useState(false);
@@ -19,58 +20,12 @@ function App() {
     transcript,
     // listening,
     resetTranscript,
+    finalTranscript,
     browserSupportsSpeechRecognition,
   } = useSpeechRecognition();
 
   let speech = new SpeechSynthesisUtterance();
   speech.lang = "en";
-
-  // useEffect(() => {
-  //   document.addEventListener("keydown", (e) => {
-  //     if (e.code === "ControlLeft" || e.code === "ControlRight") {
-  //       buttonsPressed.current.ctrl = true;
-  //     } else if (e.code === "Space") {
-  //       buttonsPressed.current.space = true;
-  //     }
-  //     if (buttonsPressed.current.ctrl && buttonsPressed.current.space) {
-  //       setListening(true);
-  //     }
-  //   });
-  //   document.addEventListener("keyup", (e) => {
-  //     if (e.code === "ControlLeft" || e.code === "ControlRight") {
-  //       buttonsPressed.current.ctrl = false;
-  //     } else if (e.code === "Space") {
-  //       buttonsPressed.current.space = false;
-  //     }
-  //     if (!buttonsPressed.current.ctrl || !buttonsPressed.current.space) {
-  //       setListening(false);
-  //     }
-  //   });
-
-  //   return () => {
-  //     document.removeEventListener("keydown", (e) => {
-  //       if (e.code === "ControlLeft" || e.code === "ControlRight") {
-  //         buttonsPressed.current.ctrl = true;
-  //       } else if (e.code === "Space") {
-  //         buttonsPressed.current.space = true;
-  //       }
-  //       if (buttonsPressed.current.ctrl && buttonsPressed.current.space) {
-  //         setListening(true);
-  //       }
-  //     });
-  //     document.removeEventListener("keyup", (e) => {
-  //       if (e.code === "ControlLeft" || e.code === "ControlRight") {
-  //         buttonsPressed.current.ctrl = false;
-  //       } else if (e.code === "Space") {
-  //         buttonsPressed.current.space = false;
-  //       }
-  //       if (!buttonsPressed.current.ctrl || !buttonsPressed.current.space) {
-  //         setListening(false);
-  //       }
-  //     });
-  //   };
-  // }, []);
-
   useEffect(() => {
     if (!browserSupportsSpeechRecognition) {
       alert("Browser doesn't support speech recognition.");
@@ -84,9 +39,13 @@ function App() {
   }, [listening]);
 
   useEffect(() => {
-    if (!transcript) return;
-    setMessage(transcript);
-  }, [transcript]);
+    if (finalTranscript) {
+      setMessage(finalTranscript);
+      resetTranscript();
+    } else if (transcript) {
+      setMessage(transcript);
+    }
+  }, [finalTranscript, transcript]);
 
   const toggleChatbox = () => {
     setChatbox(!chatbox);
@@ -100,7 +59,7 @@ function App() {
     resetTranscript();
     try {
       const res = await axios.post(
-        `https://0e99-2407-aa80-116-41ec-4546-a2c8-e7f3-4fb0.ap.ngrok.io/predict`,
+        `https://6ab7-2407-aa80-116-41ec-8168-3bd7-6cbe-346a.ap.ngrok.io/predict`,
         JSON.stringify({ message: message }),
         {
           headers: {
@@ -119,7 +78,9 @@ function App() {
 
   return (
     <div className="container">
-      <div className="chatbox">
+      <Topbar />
+      <ChatContainer />
+      {/* <div className="chatbox">
         <div
           className={classNames(
             "chatbox__support",
@@ -199,7 +160,7 @@ function App() {
             <img src={chatboxImage} />
           </button>
         </div>
-      </div>
+      </div> */}
     </div>
   );
 }
