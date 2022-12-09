@@ -6,6 +6,7 @@
   border: 1px solid #bb83dc;
   border-radius: 16px;
   color: #bb83dc;
+  cursor: pointer;
 }
 
 .selected {
@@ -22,14 +23,8 @@
 
 @media screen and (max-width: 768px) {
   .container {
-    width: 50px;
-    font-size: 9px;
+    width: 40px;
+    font-size: 8px;
+    display: none;
   }
 }
-
-@media screen and (max-width: 425px) {
-    .container {
-      width: 30px;
-      font-size: 1px;
-    }
-  }
