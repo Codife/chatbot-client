@@ -5,6 +5,7 @@ import chatboxImage from "./assets/chatbox-icon.svg";
 import SpeechRecognition, {
   useSpeechRecognition,
 } from "react-speech-recognition";
+import { BsMic } from "react-icons/bs";
 import axios from "axios";
 import { ChatContainer, Topbar } from "./components";
 

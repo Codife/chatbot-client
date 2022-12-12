@@ -1,11 +1,12 @@
 .container {
   width: 100%;
   background-color: rgb(226, 225, 225);
-  overflow: hidden;
+  overflow: scroll;
   position: relative;
   border-radius: 6px;
   margin-top: 25px;
   height: 100vh;
+  padding: 0px 10px;
 }
 .container::before {
   content: "";
@@ -17,12 +18,12 @@
 }
 .container::after {
   content: "";
-  position: absolute;
+  position: fixed;
   width: 125px;
   height: 115px;
   left: 50%;
   margin-left: -62.5px;
-  top: -50px;
+  top: 33px;
   border-radius: 50%;
   background-color: white;
 }
@@ -40,4 +41,47 @@
 }
 .subText {
   color: rgb(145, 141, 141);
+}
+
+.chatContainer {
+  margin-top: auto;
+  display: flex;
+  overflow-y: scroll;
+  flex-direction: column-reverse;
+  padding: 0px 30px 0px 25px;
+  margin-bottom: 200px;
+}
+
+.exiMsgContainer {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+  max-width: 50%;
+}
+
+.exiiChatImg, .userChatImg {
+  height: 35px;
+  width: 35px;
+  margin-right: 10px;
+}
+
+.exiiMsg {
+  color: white;
+  background-color: #bb83dc;
+  font-size: 14px;
+  padding: 10px;
+  border-radius: 24px;
+}
+
+.userMsgContainer {
+  display: flex;
+  align-items: center;
+  margin-left: auto;
+  margin-bottom: 10px;
+  max-width: 50%;
+}
+
+.userChatImg {
+  margin-right: 0px;
+  margin-left: 10px;
 }
