@@ -1,28 +1,31 @@
 .container {
-  position: absolute;
   display: flex;
-  top: 35px;
-  /* left: 50%; */
-  /* margin-left: -50px; */
   z-index: 2;
-  /* height: 95px; */
-  width: 100vw;
+  justify-content: center;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  height: 30px;
+  line-height: 20px;
+}
+
+.exiContainer {
+  flex: 0.13;
+  display: flex;
   justify-content: center;
 }
 
 .exiImg {
   height: 110px;
   width: 110px;
-  margin-right: -16px;
-  margin-top: -8px;
 }
 
-.subContainer {
-  width: 90%;
+.btnContainer {
   display: flex;
+  flex-direction: row;
   justify-content: space-between;
-  height: 30px;
-  line-height: 20px;
+  flex: 0.45;
+  width: 100%;
 }
 
 @media screen and (max-width: 768px) {

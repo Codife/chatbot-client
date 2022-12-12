@@ -4,7 +4,7 @@
   overflow: hidden;
   position: relative;
   border-radius: 6px;
-  margin-top: 50px;
+  margin-top: 25px;
   height: 100vh;
 }
 .container::before {
@@ -21,7 +21,7 @@
   width: 125px;
   height: 115px;
   left: 50%;
-  margin-left: -55px;
+  margin-left: -62.5px;
   top: -50px;
   border-radius: 50%;
   background-color: white;
