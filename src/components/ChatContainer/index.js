@@ -4,140 +4,56 @@ import BottomBar from "../BottomBar";
 import exiChat from "../../assets/exiiChat.png";
 import styles from "./ChatContainer.module.css";
 
-const ChatContainer = () => {
+const ChatContainer = ({
+  onChange,
+  userInput,
+  listening,
+  setListening,
+  sendQuestionToBot,
+  QnAs,
+}) => {
   return (
     <div className={styles.container}>
       <div className={styles.topContainer}>
         <h3 className={styles.text}>EXII Bot</h3>
-        <p className={classNames(styles.text, styles.subText)}>2nd Sep 2022</p>
+        <p className={classNames(styles.text, styles.subText)}>
+          {new Date().toDateString()}
+        </p>
       </div>
       <div className={styles.chatContainer}>
-        <div className={styles.exiMsgContainer}>
-          <img src={exiChat} className={styles.exiiChatImg} alt="exiiChatImg" />
-          <div className={styles.exiiMsg}>
-            Left Side Text Left Side Text Left Side Text Left Side Text Left
-            Side Text Left Side Text Left Side Text Left Side Text Left Side
-            Text Left Side Text Left Side Text Left Side Text
-          </div>
-        </div>
-        <div className={styles.userMsgContainer}>
-          <div className={styles.exiiMsg}>
-            Righght Side Text RightRight Side Text
-          </div>
-          <img src={exiChat} className={styles.userChatImg} alt="exiiChatImg" />
-        </div>
-        <div className={styles.exiMsgContainer}>
-          <img src={exiChat} className={styles.exiiChatImg} alt="exiiChatImg" />
-          <div className={styles.exiiMsg}>
-            Left Side Text Left Side Text Left Side Text Left Side Text Left
-            Side Text Left Side Text Left Side Text Left Side Text Left Side
-            Text Left Side Text Left Side Text Left Side Text
-          </div>
-        </div>
-        <div className={styles.userMsgContainer}>
-          <div className={styles.exiiMsg}>
-            Right Side Text Right Side Text Right Side Text Right Side Text
-            Right Side Text Right Side Text Right Side Text Right Side Text
-            Right Side Text Right Side Text
-          </div>
-          <img src={exiChat} className={styles.userChatImg} alt="exiiChatImg" />
-        </div>
-        <div className={styles.exiMsgContainer}>
-          <img src={exiChat} className={styles.exiiChatImg} alt="exiiChatImg" />
-          <div className={styles.exiiMsg}>
-            Left Side Text Left Side Text Left Side Text Left Side Text Left
-            Side Text Left Side Text Left Side Text Left Side Text Left Side
-            Text Left Side Text Left Side Text Left Side Text
-          </div>
-        </div>
-        <div className={styles.userMsgContainer}>
-          <div className={styles.exiiMsg}>
-            Right Side Text Right Side Text Right Side Text Right Side Text
-            Right Side Text Right Side Text Right Side Text Right Side Text
-            Right Side Text Right Side Text
-          </div>
-          <img src={exiChat} className={styles.userChatImg} alt="exiiChatImg" />
-        </div>
-        <div className={styles.exiMsgContainer}>
-          <img src={exiChat} className={styles.exiiChatImg} alt="exiiChatImg" />
-          <div className={styles.exiiMsg}>
-            Left Side Text Left Side Text Left Side Text Left Side Text Left
-            Side Text Left Side Text Left Side Text Left Side Text Left Side
-            Text Left Side Text Left Side Text Left Side Text
-          </div>
-        </div>
-        <div className={styles.userMsgContainer}>
-          <div className={styles.exiiMsg}>
-            Right Side Text Right Side Text Right Side Text Right Side Text
-            Right Side Text Right Side Text Right Side Text Right Side Text
-            Right Side Text Right Side Text
-          </div>
-          <img src={exiChat} className={styles.userChatImg} alt="exiiChatImg" />
-        </div>
-        <div className={styles.exiMsgContainer}>
-          <img src={exiChat} className={styles.exiiChatImg} alt="exiiChatImg" />
-          <div className={styles.exiiMsg}>
-            Left Side Text Left Side Text Left Side Text Left Side Text Left
-            Side Text Left Side Text Left Side Text Left Side Text Left Side
-            Text Left Side Text Left Side Text Left Side Text
-          </div>
-        </div>
-        <div className={styles.userMsgContainer}>
-          <div className={styles.exiiMsg}>
-            Right Side Text Right Side Text Right Side Text Right Side Text
-            Right Side Text Right Side Text Right Side Text Right Side Text
-            Right Side Text Right Side Text
-          </div>
-          <img src={exiChat} className={styles.userChatImg} alt="exiiChatImg" />
-        </div>
-        <div className={styles.exiMsgContainer}>
-          <img src={exiChat} className={styles.exiiChatImg} alt="exiiChatImg" />
-          <div className={styles.exiiMsg}>
-            Left Side Text Left Side Text Left Side Text Left Side Text Left
-            Side Text Left Side Text Left Side Text Left Side Text Left Side
-            Text Left Side Text Left Side Text Left Side Text
-          </div>
-        </div>
-        <div className={styles.userMsgContainer}>
-          <div className={styles.exiiMsg}>
-            Right Side Text Right Side Text Right Side Text Right Side Text
-            Right Side Text Right Side Text Right Side Text Right Side Text
-            Right Side Text Right Side Text
-          </div>
-          <img src={exiChat} className={styles.userChatImg} alt="exiiChatImg" />
-        </div>
-        <div className={styles.exiMsgContainer}>
-          <img src={exiChat} className={styles.exiiChatImg} alt="exiiChatImg" />
-          <div className={styles.exiiMsg}>
-            Left Side Text Left Side Text Left Side Text Left Side Text Left
-            Side Text Left Side Text Left Side Text Left Side Text Left Side
-            Text Left Side Text Left Side Text Left Side Text
-          </div>
-        </div>
-        <div className={styles.userMsgContainer}>
-          <div className={styles.exiiMsg}>
-            Right Side Text Right Side Text Right Side Text Right Side Text
-            Right Side Text Right Side Text Right Side Text Right Side Text
-            Right Side Text Right Side Text
-          </div>
-          <img src={exiChat} className={styles.userChatImg} alt="exiiChatImg" />
-        </div>
-        <div className={styles.exiMsgContainer}>
-          <img src={exiChat} className={styles.exiiChatImg} alt="exiiChatImg" />
-          <div className={styles.exiiMsg}>
-            Left Side Text Left Side Text Left Side Text Left Side Text Left
-            Side Text Left Side Text Left Side Text Left Side Text Left Side
-            Text Left Side Text Left Side Text Left Side Text
-          </div>
-        </div>
-        <div className={styles.userMsgContainer}>
-          <div className={styles.exiiMsg}>
-            Right Side Text ide Text Right Side Text Right Side Text
-          </div>
-          <img src={exiChat} className={styles.userChatImg} alt="exiiChatImg" />
-        </div>
+        {QnAs.map((QnA) => {
+          if (QnA.name === "Exarta") {
+            return (
+              <div className={styles.exiMsgContainer} key={Math.random()}>
+                <img
+                  src={exiChat}
+                  className={styles.exiiChatImg}
+                  alt="exiiChatImg"
+                />
+                <div className={styles.exiiMsg}>{QnA.message}</div>
+              </div>
+            );
+          } else {
+            return (
+              <div className={styles.userMsgContainer} key={Math.random()}>
+                <div className={styles.userMsg}>{QnA.message}</div>
+                <img
+                  src={exiChat}
+                  className={styles.userChatImg}
+                  alt="exiiChatImg"
+                />
+              </div>
+            );
+          }
+        })}
       </div>
-      <BottomBar />
+      <BottomBar
+        onChange={onChange}
+        userInput={userInput}
+        listening={listening}
+        setListening={setListening}
+        sendQuestionToBot={sendQuestionToBot}
+      />
     </div>
   );
 };

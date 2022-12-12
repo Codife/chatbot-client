@@ -1,20 +1,15 @@
-import classNames from "classnames";
 import { useEffect, useRef, useState } from "react";
 import "./App.css";
-import chatboxImage from "./assets/chatbox-icon.svg";
 import SpeechRecognition, {
   useSpeechRecognition,
 } from "react-speech-recognition";
-import { BsMic } from "react-icons/bs";
 import axios from "axios";
 import { ChatContainer, Topbar } from "./components";
 
 function App() {
-  const [chatbox, setChatbox] = useState(false);
   const [QnAs, setQnAs] = useState([]);
   const [listening, setListening] = useState(false);
   const [message, setMessage] = useState("");
-  const buttonsPressed = useRef({ ctrl: false, space: false });
 
   const {
     transcript,
@@ -26,6 +21,7 @@ function App() {
 
   let speech = new SpeechSynthesisUtterance();
   speech.lang = "en";
+
   useEffect(() => {
     if (!browserSupportsSpeechRecognition) {
       alert("Browser doesn't support speech recognition.");
@@ -46,10 +42,6 @@ function App() {
       setMessage(transcript);
     }
   }, [finalTranscript, transcript]);
-
-  const toggleChatbox = () => {
-    setChatbox(!chatbox);
-  };
 
   const sendQuestionToBot = async () => {
     const TQnAs = QnAs;
@@ -79,88 +71,16 @@ function App() {
   return (
     <div className="container">
       <Topbar />
-      <ChatContainer />
-      {/* <div className="chatbox">
-        <div
-          className={classNames(
-            "chatbox__support",
-            chatbox && "chatbox--active"
-          )}
-        >
-          <div className="chatbox__header">
-            <div className="chatbox__image--header">
-              <img
-                src="https://img.icons8.com/color/48/000000/circled-user-female-skin-type-5--v1.png"
-                alt="image"
-              />
-            </div>
-            <div className="chatbox__content--header">
-              <h4 className="chatbox__heading--header">Chat support</h4>
-              <p className="chatbox__description--header">
-                Hi. Welcome to Exarta. How can I help you?
-              </p>
-              <p
-                className="chatbox__description--header"
-                style={{ fontSize: "12px", marginTop: "5px" }}
-              >
-                Press Ctrl + space to take input from mic
-              </p>
-            </div>
-          </div>
-          <div className="chatbox__messages">
-            {QnAs.map((m) => {
-              if (m.name === "Exarta")
-                return (
-                  <div
-                    key={Math.random()}
-                    className="messages__item messages__item--visitor"
-                  >
-                    {m.message}
-                  </div>
-                );
-              return (
-                <div
-                  key={Math.random()}
-                  className="messages__item messages__item--operator"
-                >
-                  {m.message}
-                </div>
-              );
-            })}
-          </div>
-          <div className="chatbox__footer">
-            <input
-              type="text"
-              placeholder="Write a message..."
-              value={message}
-              onChange={(e) => {
-                setMessage(e.target.value);
-              }}
-            />
-
-            <button
-              className="chatbox__send--footer send__button"
-              onClick={sendQuestionToBot}
-            >
-              Send
-            </button>
-
-            <button
-              id="speech"
-              className="btn m-left type2"
-              onClick={() => setListening(!listening)}
-            >
-              {listening && <div className="pulse-ring"></div>}
-              <BsMic className="micIcon" />
-            </button>
-          </div>
-        </div>
-        <div className="chatbox__button" onClick={toggleChatbox}>
-          <button>
-            <img src={chatboxImage} />
-          </button>
-        </div>
-      </div> */}
+      <ChatContainer
+        onChange={(e) => {
+          setMessage(e.target.value);
+        }}
+        userInput={message}
+        listening={listening}
+        setListening={setListening}
+        sendQuestionToBot={sendQuestionToBot}
+        QnAs={QnAs}
+      />
     </div>
   );
 }
