@@ -1,0 +1,73 @@
+.container {
+    position: absolute;
+    bottom: 100px;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+.subContainer {
+    display: flex;
+    width: 90%;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.micContainer {
+    /* margin-right: 70px; */
+    flex: 0.1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.customInputStyle {
+    flex: 0.9;
+}
+
+.micBtn {
+    border: none;
+    padding: 0;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    color: #fff;
+    padding: 0;
+    margin: 0;
+    background: #bb83dc;
+    position: relative;
+    cursor: pointer;
+  }
+
+  .pulseRing {
+    content: "";
+    width: 55px;
+    height: 55px;
+    background: #bb83dc;
+    border: 5px solid #bb83dc;
+    border-radius: 50%;
+    position: absolute;
+    top: -12.5px;
+    left: -12.5px;
+    animation: pulsate infinite 1.5s;
+  }
+  
+  @keyframes pulsate {
+    0% {
+      -webkit-transform: scale(0.7, 0.7);
+      opacity: 1;
+    }
+    100% {
+      -webkit-transform: scale(0.8, 0.8);
+      opacity: 0;
+    }
+  }
+  
+  .type2 .pulseRing {
+    background: transparent;
+  }
+  
+  .micIcon {
+    height: 20px;
+    width: 20px;
+  }

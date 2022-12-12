@@ -12,7 +12,7 @@ const Topbar = () => {
         <Button text="Video Chat" onClick={() => null} />
       </div>
       <div className={styles.exiContainer}>
-        <img src={EXI} className={styles.exiImg} />
+        <img src={EXI} className={styles.exiImg} alt="EXII LOGO"/>
       </div>
       <div className={styles.btnContainer}>
         <Button text="Lands" onClick={() => null} />

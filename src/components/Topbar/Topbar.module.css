@@ -2,17 +2,19 @@
   display: flex;
   z-index: 2;
   justify-content: center;
-  width: 100%;
+  width: 95%;
   display: flex;
   justify-content: space-between;
   height: 30px;
   line-height: 20px;
+  padding: 0px 20px;
 }
 
 .exiContainer {
   flex: 0.13;
   display: flex;
   justify-content: center;
+  margin-top: 3px;
 }
 
 .exiImg {
