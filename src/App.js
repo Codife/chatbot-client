@@ -44,6 +44,7 @@ function App() {
   }, [finalTranscript, transcript]);
 
   const sendQuestionToBot = async () => {
+    if (!message) return;
     const TQnAs = QnAs;
     TQnAs.unshift({ name: "user", message: message });
     setQnAs(TQnAs);
