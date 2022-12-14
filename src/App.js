@@ -52,7 +52,7 @@ function App() {
     resetTranscript();
     try {
       const res = await axios.post(
-        `https://6ab7-2407-aa80-116-41ec-8168-3bd7-6cbe-346a.ap.ngrok.io/predict`,
+        `http://localhost:8080/predict`,
         JSON.stringify({ message: message }),
         {
           headers: {

@@ -3,6 +3,9 @@ import React from "react";
 import BottomBar from "../BottomBar";
 import exiChat from "../../assets/exiiChat.png";
 import styles from "./ChatContainer.module.css";
+import ExiiMessage from "./components/ExiiMessage";
+import UserMessage from "./components/UserMessage";
+import { Select, MenuItem } from "@mui/material";
 
 const ChatContainer = ({
   onChange,
@@ -23,29 +26,21 @@ const ChatContainer = ({
       <div className={styles.chatContainer}>
         {QnAs.map((QnA) => {
           if (QnA.name === "Exarta") {
-            return (
-              <div className={styles.exiMsgContainer} key={Math.random()}>
-                <img
-                  src={exiChat}
-                  className={styles.exiiChatImg}
-                  alt="exiiChatImg"
-                />
-                <div className={styles.exiiMsg}>{QnA.message}</div>
-              </div>
-            );
+            return <ExiiMessage msg={QnA.message} />;
           } else {
-            return (
-              <div className={styles.userMsgContainer} key={Math.random()}>
-                <div className={styles.userMsg}>{QnA.message}</div>
-                <img
-                  src={exiChat}
-                  className={styles.userChatImg}
-                  alt="exiiChatImg"
-                />
-              </div>
-            );
+            return <UserMessage msg={QnA.message} />;
           }
         })}
+      </div>
+      <div className={styles.languageBox}>
+        <Select
+          value="eng"
+          // onChange={handleChange}
+          className={styles.languageSelect}
+        >
+          <MenuItem value="eng">English</MenuItem>
+          <MenuItem value="fr">French</MenuItem>
+        </Select>
       </div>
       <BottomBar
         onChange={onChange}

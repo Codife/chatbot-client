@@ -1,0 +1,39 @@
+.exiMsgContainer {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+    max-width: 50%;
+  }
+  
+  .exiiChatImg,
+  .userChatImg {
+    height: 35px;
+    width: 35px;
+    margin-right: 10px;
+  }
+  
+  .exiiMsg,
+  .userMsg {
+    color: white;
+    background-color: #bb83dc;
+    font-size: 14px;
+    padding: 10px;
+    border-radius: 24px;
+  }
+  
+  .userMsg {
+    background-color: #682e8a;
+  }
+  
+  .userMsgContainer {
+    display: flex;
+    align-items: center;
+    margin-left: auto;
+    margin-bottom: 10px;
+    max-width: 50%;
+  }
+  
+  .userChatImg {
+    margin-right: 0px;
+    margin-left: 10px;
+  }
