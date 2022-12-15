@@ -67,7 +67,7 @@ function App() {
     resetTranscript();
     try {
       const res = await axios.post(
-        `http://localhost:8080/predict`,
+        `https://chatbot-server.exarta.com/predict`,
         JSON.stringify({ message: message, language: language }),
         {
           headers: {
@@ -77,7 +77,7 @@ function App() {
       );
       const TQnAs = QnAs;
       speech.text = res.data.answer;
-      console.log(speech)
+      console.log(speech);
       window.speechSynthesis.speak(speech);
       setQnAs([{ name: "Exarta", message: res.data.answer }, ...QnAs]);
     } catch (error) {
