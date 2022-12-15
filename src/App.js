@@ -43,6 +43,21 @@ function App() {
     }
   }, [finalTranscript, transcript]);
 
+  const [language, setLanguage] = useState("English");
+
+  const handleLanguageChange = (e) => {
+    setLanguage(e.target.value);
+    // window.speechSynthesis.lang = 'fr'
+    // const userId = localStorage.getItem("userId");
+    // if (userId) {
+    // } else {
+    //   localStorage.setItem(
+    //     "userId",
+    //     Math.floor(Math.random() * Math.random() * 30000)
+    //   );
+    // }
+  };
+
   const sendQuestionToBot = async () => {
     if (!message) return;
     const TQnAs = QnAs;
@@ -53,7 +68,7 @@ function App() {
     try {
       const res = await axios.post(
         `http://localhost:8080/predict`,
-        JSON.stringify({ message: message }),
+        JSON.stringify({ message: message, language: language }),
         {
           headers: {
             "Content-Type": "application/json",
@@ -62,6 +77,7 @@ function App() {
       );
       const TQnAs = QnAs;
       speech.text = res.data.answer;
+      console.log(speech)
       window.speechSynthesis.speak(speech);
       setQnAs([{ name: "Exarta", message: res.data.answer }, ...QnAs]);
     } catch (error) {
@@ -81,6 +97,8 @@ function App() {
         setListening={setListening}
         sendQuestionToBot={sendQuestionToBot}
         QnAs={QnAs}
+        handleLanguageChange={handleLanguageChange}
+        language={language}
       />
     </div>
   );
