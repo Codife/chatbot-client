@@ -22,7 +22,7 @@ function App() {
   let speech = new SpeechSynthesisUtterance({
     
   });
-  speech.lang = "fr";
+  // speech.lang = "en";
 
   useEffect(() => {
     if (!browserSupportsSpeechRecognition) {
@@ -80,7 +80,7 @@ function App() {
       const TQnAs = QnAs;
       speech.text = res.data.answer;
       console.log(speech);
-      window.speechSynthesis.speak(speech);
+      // window.speechSynthesis.speak(speech);
       setQnAs([{ name: "Exarta", message: res.data.answer }, ...QnAs]);
     } catch (error) {
       console.log("API ERROR", error);
