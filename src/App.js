@@ -19,8 +19,10 @@ function App() {
     browserSupportsSpeechRecognition,
   } = useSpeechRecognition();
 
-  let speech = new SpeechSynthesisUtterance();
-  speech.lang = "en";
+  let speech = new SpeechSynthesisUtterance({
+    
+  });
+  speech.lang = "fr";
 
   useEffect(() => {
     if (!browserSupportsSpeechRecognition) {
@@ -67,7 +69,7 @@ function App() {
     resetTranscript();
     try {
       const res = await axios.post(
-        `https://chatbot-server.exarta.com/predict`,
+        `https://5e97-2407-aa80-116-3eae-b114-f1e-18b5-bd30.ap.ngrok.io/predict`,
         JSON.stringify({ message: message, language: language }),
         {
           headers: {
