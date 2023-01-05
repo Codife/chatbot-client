@@ -19,9 +19,7 @@ function App() {
     browserSupportsSpeechRecognition,
   } = useSpeechRecognition();
 
-  let speech = new SpeechSynthesisUtterance({
-    
-  });
+  let speech = new SpeechSynthesisUtterance({});
   // speech.lang = "en";
 
   useEffect(() => {
@@ -69,7 +67,7 @@ function App() {
     resetTranscript();
     try {
       const res = await axios.post(
-        `https://5e97-2407-aa80-116-3eae-b114-f1e-18b5-bd30.ap.ngrok.io/predict`,
+        `http://192.168.18.120:8000/predict`,
         JSON.stringify({ message: message, language: language }),
         {
           headers: {
@@ -88,20 +86,29 @@ function App() {
   };
 
   return (
-    <div className="container">
-      <Topbar />
-      <ChatContainer
-        onChange={(e) => {
-          setMessage(e.target.value);
-        }}
-        userInput={message}
-        listening={listening}
-        setListening={setListening}
-        sendQuestionToBot={sendQuestionToBot}
-        QnAs={QnAs}
-        handleLanguageChange={handleLanguageChange}
-        language={language}
-      />
+    <div style={{ display: "flex", justifyContent: "space-between" }}>
+      <div style={{flex: 0.5}}>
+        <iframe
+          // className={styles.exiImg}
+          style={{ height: "100vh", width: "100%" }}
+          src="http://192.168.18.120:8011/streaming/client/"
+        />
+      </div>
+      <div className="container">
+        <Topbar />
+        <ChatContainer
+          onChange={(e) => {
+            setMessage(e.target.value);
+          }}
+          userInput={message}
+          listening={listening}
+          setListening={setListening}
+          sendQuestionToBot={sendQuestionToBot}
+          QnAs={QnAs}
+          handleLanguageChange={handleLanguageChange}
+          language={language}
+        />
+      </div>
     </div>
   );
 }

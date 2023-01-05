@@ -10,6 +10,7 @@ body {
   overflow: hidden;
   padding: 20px 10px;
   align-items: center;
+  flex: 0.5;
 }
 
 /* MESSAGES */
